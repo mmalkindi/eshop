@@ -21,11 +21,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product get(String productId) {
-        return productRepository.get(productId);
-    }
-
-    @Override
     public Product saveEdits(Product product, Product editedProduct) {
         return productRepository.saveEdits(product, editedProduct);
     }
@@ -36,5 +31,10 @@ public class ProductServiceImpl implements ProductService {
         List<Product> allProduct = new ArrayList<Product>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
+    }
+
+    @Override
+    public Product findById(String productId) {
+        return productRepository.findById(productId);
     }
 }
