@@ -33,9 +33,10 @@ public class ProductController {
     public String editProductPage(Model model, @PathVariable String productId) {
         Product product = service.findById(productId);
         if (product == null) {
-            return "redirect:list";
+            return "redirect:../list";
         }
         Product editedProduct = new Product();
+        editedProduct.setProductId(productId);
         editedProduct.setProductName(product.getProductName());
         editedProduct.setProductQuantity(product.getProductQuantity());
         model.addAttribute("editedProduct", editedProduct);
@@ -46,10 +47,10 @@ public class ProductController {
     public String createProductPost(@PathVariable String productId, @ModelAttribute Product editedProduct, Model model) {
         Product product = service.findById(productId);
         if (product == null) {
-            return "redirect:list";
+            return "redirect:../list";
         }
         service.saveEdits(product, editedProduct);
-        return "redirect:list";
+        return "redirect:../list";
     }
 
     @GetMapping("/list")
