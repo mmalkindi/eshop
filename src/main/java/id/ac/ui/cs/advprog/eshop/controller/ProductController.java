@@ -35,17 +35,15 @@ public class ProductController {
         if (product == null) {
             return "redirect:../list";
         }
-        Product editedProduct = new Product();
-        editedProduct.setProductId(productId);
-        editedProduct.setProductName(product.getProductName());
-        editedProduct.setProductQuantity(product.getProductQuantity());
         model.addAttribute("product", product);
         return "editProduct";
     }
 
     @PostMapping("/edit/{productId}")
-    public String createProductPost(@PathVariable String productId, @ModelAttribute Product product, Model model) {
-        service.commitEdit(product);
+    public String editProductPost(@PathVariable String productId, @ModelAttribute Product product, Model model) {
+        if (productId.equals(product.getProductId())) {
+            service.commitEdit(product);
+        }
         return "redirect:../list";
     }
 
