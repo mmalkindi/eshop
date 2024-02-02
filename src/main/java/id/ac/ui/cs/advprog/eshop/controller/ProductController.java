@@ -31,6 +31,9 @@ public class ProductController {
 
     @GetMapping("/edit")
     public String editProductPage(@ModelAttribute Product product, Model model) {
+        if (product == null) {
+            return "redirect:list";
+        }
         Product editedProduct = new Product();
         editedProduct.setProductName(product.getProductName());
         editedProduct.setProductQuantity(product.getProductQuantity());
@@ -40,7 +43,7 @@ public class ProductController {
         return "editProduct";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/edit")
     public String createProductPost(@ModelAttribute Product product, @ModelAttribute Product editedProduct, Model model) {
         service.saveEdits(product, editedProduct);
         return "redirect:list";
