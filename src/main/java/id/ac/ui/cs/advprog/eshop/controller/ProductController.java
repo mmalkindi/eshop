@@ -29,6 +29,23 @@ public class ProductController {
         return "redirect:list";
     }
 
+    @GetMapping("/edit")
+    public String editProductPage(@ModelAttribute Product product, Model model) {
+        Product editedProduct = new Product();
+        editedProduct.setProductName(product.getProductName());
+        editedProduct.setProductQuantity(product.getProductQuantity());
+
+        model.addAttribute("product", product);
+        model.addAttribute("editedProduct", editedProduct);
+        return "editProduct";
+    }
+
+    @PostMapping("/create")
+    public String createProductPost(@ModelAttribute Product product, @ModelAttribute Product editedProduct, Model model) {
+        service.saveEdits(product, editedProduct);
+        return "redirect:list";
+    }
+
     @GetMapping("/list")
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
