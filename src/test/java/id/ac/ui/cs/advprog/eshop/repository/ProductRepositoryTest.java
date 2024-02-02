@@ -58,6 +58,32 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testDeleteAndFindAll() {
+        Product product = new Product();
+        product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
+        product.setProductName("Lumba Lumba Asli Jawa");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        productRepository.delete(product);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testDeleteAndFindById() {
+        Product product = new Product();
+        product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
+        product.setProductName("Lumba Lumba Asli Jawa");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        productRepository.delete(product);
+
+        Product foundProductById = productRepository.findById(product.getProductId());
+        assertNull(foundProductById);
+    }
+
+    @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
