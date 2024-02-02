@@ -17,15 +17,18 @@ class ProductTest {
     @Test
     void testGetProductId() {
         assertEquals("5ba5eee5-99a4-43e2-9be2-26f02557d741", this.product.getProductId());
+        assertNotEquals("6ba5eee5-99a4-43e2-9be2-26f02557d742", this.product.getProductId());
     }
 
     @Test
     void testGetProductName() {
         assertEquals("Lumba Lumba Asli Jawa", this.product.getProductName());
+        assertNotEquals("Lumba Lumba Fake Jawa", this.product.getProductName());
     }
 
     @Test
     void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
+        assertNotEquals(0, this.product.getProductQuantity());
     }
 }
