@@ -35,6 +35,29 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testCommitEditAndCheck() {
+        Product product = new Product();
+        product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
+        product.setProductName("Lumba Lumba Asli Jawa");
+        product.setProductQuantity(100);
+
+        Product editedProduct = new Product();
+        editedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
+        editedProduct.setProductName("Lumba Lumba Asli Lampung");
+        editedProduct.setProductQuantity(99);
+        productRepository.commitEdit(product, editedProduct);
+
+        assertNotEquals("6ca5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
+        assertEquals("5ba5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
+
+        assertNotEquals("Lumba Lumba Asli Jawa", product.getProductName());
+        assertEquals("Lumba Lumba Asli Lampung", product.getProductName());
+
+        assertNotEquals(100, product.getProductQuantity());
+        assertEquals(99, product.getProductQuantity());
+    }
+
+    @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
