@@ -27,6 +27,17 @@ untuk melakukan `CREATE`, `UPDATE`, maupun `DELETE` data ke sistem.
 Standar **Testing** akan diterapkan pada tahap kedua Tutorial ini.
 
 ### Reflection 2
+**Answer 1:**
+Setelah menulis unit test untuk eshop, saya mulai paham akan kepentingannya dalam software development.
+Setiap method yang ada di suatu Class sebaiknya memiliki unit test yang relevan- baik itu getter, setter, constructor, 
+atau method-method lainnya.
+Untuk mengetahui apakah unit test yang dibuat sudah mencukupi atau belum, bisa dicek persentase _Code Coverage_.
+Apabila masih kurang, maka masih ada yang bisa dites. Walaupun begitu, **100% Code Coverage** belum berarti program
+terjamin _bug-free_, karena bisa saja ada kesalahan dalam _logic function_ atau tidak merangkap _unexpected behavior_.
+
+**Answer 2:**
+Test function yang saya buat sudah memverifikasi banyak item yang ada setelah produk dibuat, sehingga tidak ada masalah
+dari aspek Clean Code maupun Code Quality.
 
 ---
 [↑ Back to top](#e-shop)
