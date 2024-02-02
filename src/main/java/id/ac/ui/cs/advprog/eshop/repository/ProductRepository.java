@@ -16,7 +16,7 @@ public class ProductRepository {
         return product;
     }
 
-    public Product saveEdits(Product product, Product editedProduct) {
+    public Product commitEdit(Product product, Product editedProduct) {
         product.setProductName(editedProduct.getProductName());
         product.setProductQuantity(editedProduct.getProductQuantity());
         return product;

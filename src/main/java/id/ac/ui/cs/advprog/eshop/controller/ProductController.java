@@ -39,17 +39,13 @@ public class ProductController {
         editedProduct.setProductId(productId);
         editedProduct.setProductName(product.getProductName());
         editedProduct.setProductQuantity(product.getProductQuantity());
-        model.addAttribute("editedProduct", editedProduct);
+        model.addAttribute("product", product);
         return "editProduct";
     }
 
     @PostMapping("/edit/{productId}")
-    public String createProductPost(@PathVariable String productId, @ModelAttribute Product editedProduct, Model model) {
-        Product product = service.findById(productId);
-        if (product == null) {
-            return "redirect:../list";
-        }
-        service.saveEdits(product, editedProduct);
+    public String createProductPost(@PathVariable String productId, @ModelAttribute Product product, Model model) {
+        service.commitEdit(product);
         return "redirect:../list";
     }
 

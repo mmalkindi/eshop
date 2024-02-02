@@ -21,8 +21,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product saveEdits(Product product, Product editedProduct) {
-        return productRepository.saveEdits(product, editedProduct);
+    public Product commitEdit(Product editedProduct) {
+        Product product = productRepository.findById(editedProduct.getProductId());
+        return productRepository.commitEdit(product, editedProduct);
     }
 
     @Override
