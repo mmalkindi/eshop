@@ -29,22 +29,25 @@ public class ProductController {
         return "redirect:list";
     }
 
-    @GetMapping("/edit")
-    public String editProductPage(@ModelAttribute Product product, Model model) {
+    @GetMapping("/edit/{productId}")
+    public String editProductPage(Model model, @PathVariable String productId) {
+        Product product = service.findById(productId);
         if (product == null) {
             return "redirect:list";
         }
         Product editedProduct = new Product();
         editedProduct.setProductName(product.getProductName());
         editedProduct.setProductQuantity(product.getProductQuantity());
-
-        model.addAttribute("product", product);
         model.addAttribute("editedProduct", editedProduct);
         return "editProduct";
     }
 
-    @PostMapping("/edit")
-    public String createProductPost(@ModelAttribute Product product, @ModelAttribute Product editedProduct, Model model) {
+    @PostMapping("/edit/{productId}")
+    public String createProductPost(@PathVariable String productId, @ModelAttribute Product editedProduct, Model model) {
+        Product product = service.findById(productId);
+        if (product == null) {
+            return "redirect:list";
+        }
         service.saveEdits(product, editedProduct);
         return "redirect:list";
     }
