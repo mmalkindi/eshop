@@ -1,10 +1,6 @@
 # E-Shop
 *Repositori Tugas Individu untuk mata kuliah Pemrograman Lanjut Semester Genap 2023/2024.*
 
-
->_"I love capitalism"_  
-~ E-Shop CEO (bukan gw)
-
 ```credential
 Nama  : Muhammad Milian Alkindi
 Kelas : AdPro-B (Reguler)
