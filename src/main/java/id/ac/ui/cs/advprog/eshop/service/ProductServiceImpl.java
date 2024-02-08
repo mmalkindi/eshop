@@ -15,20 +15,18 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Product create(Product product) {
+    public void create(Product product) {
         productRepository.create(product);
-        return product;
     }
 
     @Override
-    public Product commitEdit(Product editedProduct) {
-        Product product = productRepository.findById(editedProduct.getProductId());
-        return productRepository.commitEdit(product, editedProduct);
+    public void commitEdit(Product editedProduct) {
+        productRepository.findById(editedProduct.getProductId());
     }
 
     @Override
-    public Product delete(Product product) {
-        return productRepository.delete(product);
+    public void delete(Product product) {
+        productRepository.delete(product);
     }
 
     @Override

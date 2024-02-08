@@ -9,22 +9,19 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
-    private List<Product> productData = new ArrayList<Product>();
+    private final List<Product> productData = new ArrayList<Product>();
 
-    public Product create(Product product) {
+    public void create(Product product) {
         productData.add(product);
-        return product;
     }
 
-    public Product commitEdit(Product product, Product editedProduct) {
+    public void commitEdit(Product product, Product editedProduct) {
         product.setProductName(editedProduct.getProductName());
         product.setProductQuantity(editedProduct.getProductQuantity());
-        return product;
     }
 
-    public Product delete(Product product) {
+    public void delete(Product product) {
         productData.remove(product);
-        return product;
     }
 
     public Iterator<Product> findAll() {
