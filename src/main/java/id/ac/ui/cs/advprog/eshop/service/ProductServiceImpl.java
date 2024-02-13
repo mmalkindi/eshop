@@ -20,7 +20,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void commitEdit(Product editedProduct) {
-        productRepository.findById(editedProduct.getProductId());
+        Product product = productRepository.findById(editedProduct.getProductId());
+        if (product != null) {
+            productRepository.commitEdit(product, editedProduct);
+        }
     }
 
     @Override
