@@ -2,7 +2,7 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +13,17 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService service;
+    private final ProductService service = new ProductServiceImpl();
 
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "createProduct";
+        return "CreateProduct";
     }
 
     @PostMapping("/create")
-    public String createProductPost(@ModelAttribute Product product, Model model) {
+    public String createProductPost(@ModelAttribute Product product) {
         service.create(product);
         return "redirect:list";
     }
@@ -36,11 +35,11 @@ public class ProductController {
             return "redirect:../list";
         }
         model.addAttribute("product", product);
-        return "editProduct";
+        return "EditProduct";
     }
 
     @PostMapping("/edit/{productId}")
-    public String editProductPost(@PathVariable String productId, @ModelAttribute Product product, Model model) {
+    public String editProductPost(@PathVariable String productId, @ModelAttribute Product product) {
         if (productId.equals(product.getProductId())) {
             service.commitEdit(product);
         }
@@ -48,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/delete/{productId}")
-    public String editProductPost(@PathVariable String productId, Model model) {
+    public String editProductPost(@PathVariable String productId) {
         Product product = service.findById(productId);
         if (product != null) {
             service.delete(product);
@@ -60,6 +59,6 @@ public class ProductController {
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
-        return "productList";
+        return "ProductList";
     }
 }
