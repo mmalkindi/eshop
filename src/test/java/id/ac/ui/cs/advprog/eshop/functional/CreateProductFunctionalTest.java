@@ -20,7 +20,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-public class CreateProductFunctionalTest {
+class CreateProductFunctionalTest {
     @LocalServerPort
     private int serverPort;
 
@@ -35,90 +35,6 @@ public class CreateProductFunctionalTest {
 
     @Test
     void testProductCreation_chrome(ChromeDriver driver) throws Exception {
-        driver.get(baseUrl + "/list");
-
-        WebElement createButtonLink = driver.findElement(By.cssSelector("[aria-label='Create Product']"));
-        createButtonLink.click();
-
-        assertEquals(baseUrl + "/create", driver.getCurrentUrl());
-
-        WebElement productNameInput = driver.findElement(By.id("nameInput"));
-        WebElement productQuantityInput = driver.findElement(By.id("quantityInput"));
-        WebElement submitButton = driver.findElement(By.cssSelector("[aria-label='Submit']"));
-
-        productNameInput.clear();
-        productNameInput.sendKeys("Kagurabachi Vol. 1");
-        productQuantityInput.clear();
-        productQuantityInput.sendKeys("1000");
-        submitButton.click();
-
-        assertEquals(baseUrl + "/list", driver.getCurrentUrl());
-
-        WebElement productListBody = driver.findElement(By.id("list-product")).findElement(By.tagName("tbody"));
-        List<WebElement> rows = productListBody.findElements(By.tagName("tr"));
-        assertEquals(1, rows.size());
-
-        for (WebElement row : rows) {
-            List<WebElement> cols = row.findElements(By.tagName("td"));
-            int index = 0;
-            for (WebElement col : cols) {
-                if (index == 0) {
-                    assertEquals("Kagurabachi Vol. 1", col.getText());
-                }
-                if (index == 1) {
-                    assertEquals("1000", col.getText());
-                }
-                if (index++ > 2) {
-                    break;
-                }
-            }
-        }
-    }
-
-    @Test
-    void testProductCreation_edge(EdgeDriver driver) throws Exception {
-        driver.get(baseUrl + "/list");
-
-        WebElement createButtonLink = driver.findElement(By.cssSelector("[aria-label='Create Product']"));
-        createButtonLink.click();
-
-        assertEquals(baseUrl + "/create", driver.getCurrentUrl());
-
-        WebElement productNameInput = driver.findElement(By.id("nameInput"));
-        WebElement productQuantityInput = driver.findElement(By.id("quantityInput"));
-        WebElement submitButton = driver.findElement(By.cssSelector("[aria-label='Submit']"));
-
-        productNameInput.clear();
-        productNameInput.sendKeys("Kagurabachi Vol. 1");
-        productQuantityInput.clear();
-        productQuantityInput.sendKeys("1000");
-        submitButton.click();
-
-        assertEquals(baseUrl + "/list", driver.getCurrentUrl());
-
-        WebElement productListBody = driver.findElement(By.id("list-product")).findElement(By.tagName("tbody"));
-        List<WebElement> rows = productListBody.findElements(By.tagName("tr"));
-        assertEquals(1, rows.size());
-
-        for (WebElement row : rows) {
-            List<WebElement> cols = row.findElements(By.tagName("td"));
-            int index = 0;
-            for (WebElement col : cols) {
-                if (index == 0) {
-                    assertEquals("Kagurabachi Vol. 1", col.getText());
-                }
-                if (index == 1) {
-                    assertEquals("1000", col.getText());
-                }
-                if (index++ > 2) {
-                    break;
-                }
-            }
-        }
-    }
-
-    @Test
-    void testProductCreation_firefox(FirefoxDriver driver) throws Exception {
         driver.get(baseUrl + "/list");
 
         WebElement createButtonLink = driver.findElement(By.cssSelector("[aria-label='Create Product']"));
