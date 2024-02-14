@@ -2,21 +2,16 @@ name: Deploy to Koyeb
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Deploy to Koyeb
-        uses: koyeb/koyeb-action@v1
+      - uses: actions/checkout@v2
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/install-koyeb-cli@v2
         with:
-          koyeb_organization: ${{ secrets.KOYEB_ORGANIZATION }}
-          koyeb_app: ${{ secrets.KOYEB_APP }}
-          koyeb_service: ${{ secrets.KOYEB_SERVICE }}
-          koyeb_secret: ${{ secrets.KOYEB_API_TOKEN }}
+          api_token: "${{ secrets.KOYEB_API_TOKEN }}"
+      - name: Deploy to Koyeb
+        run: koyeb service redeploy eshop/eshop
