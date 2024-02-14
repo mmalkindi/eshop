@@ -22,12 +22,14 @@ yang seharusnya tidak diperlukan.
 Saya juga menambahkan unit tests untuk ProductService.
 
 
-> Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons!
+> Look at your CI/CD workflows (GitHub)/pipelines (GitLab). 
+> Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? 
+> Explain the reasons!
 
-...
-
-
-
+Menurut saya, CI/CD workflow yang ada di repo GitHub saya sudah mengikuti definisinya.
+Workflow Continuous Integration seperti `sonarcloud.yml` dan `ci.yml` akan men-_trigger_ code analysis menggunakan gradle.
+Sementara itu, workflow Continuous Development (`deploy.yml`) akan men-_trigger_ redeploy apps/service ke koyeb.
+Di Koyeb dan Sonarcloud, terjadi Code Analysis dan Deployment sendiri yang terpisah dengan GitHub Actions.
 
 ## Module 01: Coding Standards
 ### Reflection 1
