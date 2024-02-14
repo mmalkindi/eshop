@@ -6,12 +6,30 @@ Nama  : Muhammad Milian Alkindi
 Kelas : AdPro-B (Reguler)
 ```
 
-|               Jump ke tutorial               |
-|:--------------------------------------------:|
-| [Tutorial 01](#tutorial-01-coding-standards) |
+|             Jump ke tutorial             |
+|:----------------------------------------:|
+| [Module 01](#module-01-coding-standards) |
+|   [Module 02](#module-02-cicd--devops)   |
+
+## Module 02: CI/CD & DevOps
+### Reflection
+> List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+
+Saya mengubah method-method CRUD di repository dan service supaya tidak return type yang tidak diperlukan.
+Ini termasuk improvement dari sisi Clean Code.
+Dari segi Code Quality improvement yang terdeteksi oleh Sonarcloud, saya memperbaiki penggunaan type specification
+yang seharusnya tidak diperlukan.
+Saya juga menambahkan unit tests untuk ProductService.
 
 
-## Tutorial 01: Coding Standards
+> Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons!
+
+...
+
+
+
+
+## Module 01: Coding Standards
 ### Reflection 1
 Sejauh ini, sudah ada beberapa _coding standard_ yang saya terapkan untuk proyek ini, antara lain:
 **Clean Code** dan **Git Flow**. Penamaan atribut, variabel dan fungsi, struktur data, serta penggunaan Git
