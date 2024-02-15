@@ -7,15 +7,13 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public class CarRepository {
-    static int id = 0;
     private final List<Car> carData = new ArrayList<>();
-    public Car create(Car car) {
+    public void create(Car car) {
         if (car.getCarId() == null) {
             UUID uuid = UUID.randomUUID();
             car.setCarId(uuid.toString());
         }
         carData.add(car);
-        return car;
     }
     public Iterator<Car> findAll() {
         return carData.iterator();
@@ -28,18 +26,14 @@ public class CarRepository {
         }
         return null;
     }
-    public Car update(String id, Car updatedCar) {
-        for (int i = 0; i < carData.size(); i++) {
-            Car car = carData.get(i);
+    public void update(String id, Car updatedCar) {
+        for (Car car : carData) {
             if (car.getCarId().equals(id)) {
-                // Update existing car with new information
                 car.setCarName(updatedCar.getCarName());
                 car.setCarColor(updatedCar.getCarColor());
                 car.setCarQuantity(updatedCar.getCarQuantity());
-                return car;
             }
         }
-        return null;
     }
     public void delete(String id) {
         carData.removeIf(car -> car.getCarId().equals(id));
