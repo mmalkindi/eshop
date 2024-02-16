@@ -9,10 +9,6 @@ import java.util.UUID;
 public class CarRepository {
     private final List<Car> carData = new ArrayList<>();
     public void create(Car car) {
-        if (car.getCarId() == null) {
-            UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString());
-        }
         carData.add(car);
     }
     public Iterator<Car> findAll() {
