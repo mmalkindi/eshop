@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     public void commitEdit(Product editedProduct) {
         Product product = productRepository.findById(editedProduct.getProductId());
         if (product != null) {
-            productRepository.commitEdit(product, editedProduct);
+            productRepository.update(product, editedProduct);
         }
     }
 

@@ -45,7 +45,7 @@ class ProductRepositoryTest {
         editedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
         editedProduct.setProductName("Lumba Lumba Asli Lampung");
         editedProduct.setProductQuantity(99);
-        productRepository.commitEdit(product, editedProduct);
+        productRepository.update(product, editedProduct);
 
         assertNotEquals("6ca5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
         assertEquals("5ba5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
