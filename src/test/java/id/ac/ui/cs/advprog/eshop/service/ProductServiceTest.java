@@ -1,14 +1,12 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,7 +48,7 @@ class ProductServiceTest {
         editedProduct.setProductId(product.getProductId());
         editedProduct.setProductName("Lumba Lumba Asli Lampung");
         editedProduct.setProductQuantity(99);
-        productService.commitEdit(editedProduct);
+        productService.update(editedProduct);
 
         assertNotEquals("Lumba Lumba Asli Jawa", product.getProductName());
         assertEquals("Lumba Lumba Asli Lampung", product.getProductName());
@@ -71,7 +69,7 @@ class ProductServiceTest {
         editedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
         editedProduct.setProductName("Lumba Lumba Asli Lampung");
         editedProduct.setProductQuantity(99);
-        productService.commitEdit(editedProduct);
+        productService.update(editedProduct);
 
         assertEquals("Lumba Lumba Asli Jawa", product.getProductName());
         assertNotEquals("Lumba Lumba Asli Lampung", product.getProductName());

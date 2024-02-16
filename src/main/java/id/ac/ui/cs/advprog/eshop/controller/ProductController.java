@@ -40,7 +40,7 @@ public class ProductController {
 
     @PostMapping("/edit")
     public String editProductPost(@ModelAttribute Product product) {
-        productService.commitEdit(product);
+        productService.update(product);
         return "redirect:list";
     }
 
