@@ -1,24 +1,25 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
-
-    @InjectMocks
-    private ProductServiceImpl productService;
+    private ProductService productService;
 
     @BeforeEach
-    void setUp() {}
+    void initService() {
+        productService = new ProductServiceImpl(new ProductRepository());
+    }
     @Test
     void testCreateAndFind() {
         Product product = new Product();
@@ -35,9 +36,8 @@ class ProductServiceTest {
         assertEquals(product.getProductName(), savedProduct.getProductName());
         assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
     }
-
     @Test
-    void testCommitEditAndCheck() {
+    void testCreateUpdateAndCheck() {
         Product product = new Product();
         product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
         product.setProductName("Lumba Lumba Asli Jawa");
@@ -48,7 +48,7 @@ class ProductServiceTest {
         editedProduct.setProductId(product.getProductId());
         editedProduct.setProductName("Lumba Lumba Asli Lampung");
         editedProduct.setProductQuantity(99);
-        productService.update(editedProduct);
+        productService.update(product.getProductId(), editedProduct);
 
         assertNotEquals("Lumba Lumba Asli Jawa", product.getProductName());
         assertEquals("Lumba Lumba Asli Lampung", product.getProductName());
@@ -58,7 +58,7 @@ class ProductServiceTest {
     }
 
     @Test
-    void testCommitEditAndFail() {
+    void testCreateUpdateAndFail() {
         Product product = new Product();
         product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
         product.setProductName("Lumba Lumba Asli Jawa");
@@ -69,7 +69,7 @@ class ProductServiceTest {
         editedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
         editedProduct.setProductName("Lumba Lumba Asli Lampung");
         editedProduct.setProductQuantity(99);
-        productService.update(editedProduct);
+        productService.update(editedProduct.getProductId(), editedProduct);
 
         assertEquals("Lumba Lumba Asli Jawa", product.getProductName());
         assertNotEquals("Lumba Lumba Asli Lampung", product.getProductName());
@@ -79,60 +79,60 @@ class ProductServiceTest {
     }
 
     @Test
-    void testDeleteAndFindAll() {
+    void testCreateDeleteAndFindAll() {
         Product product = new Product();
         product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
         product.setProductName("Lumba Lumba Asli Jawa");
         product.setProductQuantity(100);
         productService.create(product);
-        productService.delete(product);
+        productService.delete(product.getProductId());
 
         List<Product> productIterator = productService.findAll();
         assertTrue(productIterator.isEmpty());
     }
 
     @Test
-    void testDeleteAndFindById() {
+    void testCreateDeleteAndFindById() {
         Product product = new Product();
         product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
         product.setProductName("Lumba Lumba Asli Jawa");
         product.setProductQuantity(100);
         productService.create(product);
-        productService.delete(product);
+        productService.delete(product.getProductId());
 
         Product foundProductById = productService.findById(product.getProductId());
         assertNull(foundProductById);
     }
 
     @Test
-    void testFindAllIfEmpty() {
+    void testFindAllOnEmpty() {
         List<Product> productIterator = productService.findAll();
         assertTrue(productIterator.isEmpty());
     }
 
     @Test
     void testFindAllIfMoreThanOneProduct() {
+        List<Product> localProductList = new ArrayList<>();
+
         Product product1 = new Product();
         product1.setProductId("93e4a6d8-a596-4e9e-bd30-25a80b676740");
         product1.setProductName("Lumba Lumba Asli Sumatra");
         product1.setProductQuantity(120);
         productService.create(product1);
+        localProductList.add(product1);
 
         Product product2 = new Product();
         product2.setProductId("8539355a-e19c-4402-86f5-f93ecd5945b2");
         product2.setProductName("Lumba Lumba Asli Sulawesi");
         product2.setProductQuantity(80);
         productService.create(product2);
+        localProductList.add(product2);
 
         List<Product> productList = productService.findAll();
         assertFalse(productList.isEmpty());
 
-        for (int i=0; i<2; i++) {
-            if (i == 0) {
-                assertEquals(product1.getProductId(), productList.getFirst().getProductId());
-            } else if (i == 1) {
-                assertEquals(product2.getProductId(), productList.get(1).getProductId());
-            }
+        for (int i=0; i<Math.max(localProductList.size(), productList.size()); i++) {
+            assertEquals(localProductList.get(i).getProductId(), productList.get(i).getProductId());
         }
     }
 
