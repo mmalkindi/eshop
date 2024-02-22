@@ -13,9 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProductRepositoryTest {
-
     @InjectMocks
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
     @BeforeEach
     void setUp() {}
     @Test
@@ -35,17 +34,18 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testCommitEditAndCheck() {
+    void testUpdateAndFind() {
         Product product = new Product();
         product.setProductId("5ba5eee5-99a4-43e2-9be2-26f02557d741");
         product.setProductName("Lumba Lumba Asli Jawa");
         product.setProductQuantity(100);
+        productRepository.create(product);
 
-        Product editedProduct = new Product();
-        editedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
-        editedProduct.setProductName("Lumba Lumba Asli Lampung");
-        editedProduct.setProductQuantity(99);
-        productRepository.update(product, editedProduct);
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId("6ca5eee5-99a4-43e2-9be2-26f02557d741");
+        updatedProduct.setProductName("Lumba Lumba Asli Lampung");
+        updatedProduct.setProductQuantity(99);
+        productRepository.update(product.getProductId(), updatedProduct);
 
         assertNotEquals("6ca5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
         assertEquals("5ba5eee5-99a4-43e2-9be2-26f02557d741", product.getProductId());
@@ -64,7 +64,7 @@ class ProductRepositoryTest {
         product.setProductName("Lumba Lumba Asli Jawa");
         product.setProductQuantity(100);
         productRepository.create(product);
-        productRepository.delete(product);
+        productRepository.delete(product.getProductId());
 
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
@@ -77,7 +77,7 @@ class ProductRepositoryTest {
         product.setProductName("Lumba Lumba Asli Jawa");
         product.setProductQuantity(100);
         productRepository.create(product);
-        productRepository.delete(product);
+        productRepository.delete(product.getProductId());
 
         Product foundProductById = productRepository.findById(product.getProductId());
         assertNull(foundProductById);
