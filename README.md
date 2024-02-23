@@ -16,7 +16,34 @@ Kelas : AdPro-B (Reguler)
 ### Reflection
 > Explain what principles you apply to your project!
 
-Uhhh
+Saya telah mengaplikasikan _SOLID principles_ di project ini, yaitu:
+
+#### 1. Single Responsibility Principle
+Memecah module sehingga tiap file hanya memiliki 1 class yang bertanggung jawab atas suatu feature/behavior. Tiap function
+yang ada juga hanya memiliki satu tugas sehingga lebih mudah untuk ditest, maintain, juga lebih terorganisir.
+Di exercise ini, saya memisahkan kelas CarController dari `ProductController.java` ke file `CarController.java` dan juga
+menghilangkan _return type_ dari function yang tidak memerlukannya (`create`, `update`, `delete`). 
+Perubahan-perubahan tersebut adalah contoh implementasi SRP di project ini.
+
+#### 2. Open-Closed Principle
+Module yang ada harus dapat diekstensi (menambah fitur) namun tidak untuk diubah/modifikasi (kecuali untuk bug fix).
+Project ini sudah menerapkan OCP karena tiap module hanya menambahkan fitur dari _parentnya_ dan tidak memodifikasi fitur
+yang di*inherit*.
+
+#### 3. Liskov Substitution Principle
+Apabila class A merupakan subclass dari class B, maka semua function/method dari class B dapat dipanggil melalui object class A
+dan hasilnya ekivalen dengan apabila dipanggil melalui object class B. Di project ini, LSP sudah diterapkan
+(partially because there's no inheritance yet).
+
+#### 4. Interface Segregation Principle
+Interface besar dipecah sehingga hanya memiliki spesifikasi function/method yang paling simpel saja.
+Ini dilakukan supaya _class_ yang akan mengimplementasi interface tersebut tidak terbebani dengan function/method yang tidak penting.
+Contoh di proyek ini, interface `CarService` hanya memiliki method yang berhubungan dengan `CarRepository` sehingga
+`CarServiceImpl` hanya perlu mengimplementasi method-method yang relevan.
+
+#### 5. Dependency Inversion Principle
+Module dari package yang berbeda menggunakan _abstract_ class/interface dan bukan implementasinya.
+...
 
 > Explain the advantages of applying SOLID principles to your project with examples
 
