@@ -53,7 +53,8 @@ dan bukan `CarServiceImpl` ketika ingin menggunakan `CarService`.
 
 > Explain the disadvantages of not applying SOLID principles to your project with examples
 
-Uhh
+1. **Messier code**: Apabila tidak menerapkan SRP, `CarController` akan tetap berada di `ProductController.java`. Ini akan membingungkan saya sendiri kedepannya apabila ingin mengubah kode controller tersebut.
+2. **Entangled unit tests**: Apabila tidak menerapkan SRP, _branch_ dari fitur yang harus dibuat unit testsnya berpotensial menjalar kemana-mana. Misal: unit  test untuk `create` di `CarRepository` akan perlu mencoba kemungkinan untuk branching ketika `Car` tidak memiliki UUID, padahal seharusnya sudah di*generate* saat instantiation objek `Car`.
 
 ## Module 02: CI/CD & DevOps
 ### Reflection
