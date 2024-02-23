@@ -6,10 +6,25 @@ Nama  : Muhammad Milian Alkindi
 Kelas : AdPro-B (Reguler)
 ```
 
-|             Jump ke tutorial             |
-|:----------------------------------------:|
-| [Module 01](#module-01-coding-standards) |
-|   [Module 02](#module-02-cicd--devops)   |
+|                    Jump ke tutorial                    |
+|:------------------------------------------------------:|
+|        [Module 01](#module-01-coding-standards)        |
+|          [Module 02](#module-02-cicd--devops)          |
+| [Module 03](#module-03-maintainability--oo-principles) |
+
+## Module 03: Maintainability & OO Principles
+### Reflection
+> Explain what principles you apply to your project!
+
+Uhhh
+
+> Explain the advantages of applying SOLID principles to your project with examples
+
+Uhh
+
+> Explain the disadvantages of not applying SOLID principles to your project with examples
+
+Uhh
 
 ## Module 02: CI/CD & DevOps
 ### Reflection
