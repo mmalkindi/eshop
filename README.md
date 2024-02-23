@@ -42,8 +42,8 @@ Contoh di proyek ini, interface `CarService` hanya memiliki method yang berhubun
 `CarServiceImpl` hanya perlu mengimplementasi method-method yang relevan.
 
 #### 5. Dependency Inversion Principle
-Module dari package yang berbeda menggunakan _abstract_ class/interface dan bukan implementasinya.
-...
+Menggunakan _abstract classes_ atau interfaces dibanding implementasi konkretnya. Contoh di proyek ini, memberi tipe objek `CarService`
+dan bukan `CarServiceImpl` ketika ingin menggunakan `CarService`.
 
 > Explain the advantages of applying SOLID principles to your project with examples
 
