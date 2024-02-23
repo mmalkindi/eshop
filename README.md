@@ -47,7 +47,9 @@ dan bukan `CarServiceImpl` ketika ingin menggunakan `CarService`.
 
 > Explain the advantages of applying SOLID principles to your project with examples
 
-Uhh
+1. **Unit testing menjadi lebih mudah**: Karena sudah menerapkan SRP, _unit test_ menjadi lebih concise dan bahkan bisa ditulis sebelum kodenya (Test Driven Development). Reporting jacoco dan sonarcloud juga lebih mudah untuk dianalisis.
+2. **Flexible development**: Penerapan OCP membuat penambahan fitur mudah dan menjaga saya dari sengaja memodif bagian kode yang sudah ada.
+3. **Easier debugging**: Ketika terjadi _error_ program selama development, proses debugging dan mencari asal masalah lebih lancar karena _responsibility_ tiap kelas dan function sudah dipecah (tidak ada yang _double_ pekerjaannya)
 
 > Explain the disadvantages of not applying SOLID principles to your project with examples
 
