@@ -34,8 +34,6 @@ public class Payment {
         } else if (method.equals(PaymentMethod.BANK_TRANSFER.getValue())) {
             if (!paymentData.containsKey("bankName")) {
                 throw new IllegalArgumentException();
-            } else if (!paymentData.containsKey("referenceCode")) {
-                throw new IllegalArgumentException();
             }
             if (paymentData.get("bankName") == null){
                 setStatus(PaymentStatus.REJECTED.getValue());
