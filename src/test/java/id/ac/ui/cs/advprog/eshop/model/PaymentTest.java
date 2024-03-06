@@ -51,7 +51,7 @@ public class PaymentTest {
 
     @Test
     void testCreateInvalidVoucherNotStartsWithESHOP() {
-        voucherPaymentData.put("voucher", "ESH0P1234ABC56789");
+        voucherPaymentData.put("voucherCode", "ESH0P1234ABC56789");
 
         Payment payment = new Payment("5fb0fffe-0080-439c-bd5c-2e6824c54c7b",
                 "voucher", voucherPaymentData);
@@ -60,7 +60,7 @@ public class PaymentTest {
 
     @Test
     void testCreateInvalidVoucherNot8Numerical() {
-        voucherPaymentData.put("voucher", "ESHOP1234ABC567D");
+        voucherPaymentData.put("voucherCode", "ESHOP1234ABC567D");
 
         Payment payment = new Payment("5fb0fffe-0080-439c-bd5c-2e6824c54c7b",
                 "voucher", voucherPaymentData);
