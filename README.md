@@ -7,11 +7,35 @@ Nama  : Muhammad Milian Alkindi
 Kelas : AdPro-B (Reguler)
 ```
 
-|                    Jump ke module                    |
+|                     Jump ke module                     |
 |:------------------------------------------------------:|
 |        [Module 01](#module-01-coding-standards)        |
 |          [Module 02](#module-02-cicd--devops)          |
 | [Module 03](#module-03-maintainability--oo-principles) |
+|      [Module 04](#module-04-refactoring-and-tdd)       |
+
+## Module 04: Refactoring and TDD
+
+### Reflection-04
+
+> Based on Percival (2017) proposed self-reflective questions, is this TDD flow useful enough for you or not?
+> If not, explain things that you need to do next time you make more tests.
+
+Menurut saya, TDD flow membutuhkan _pre-planning_ yang saya rasa lumayan berat. Walau memang proses development menjadi lebih rapi dan terstruktur,
+kadang saya juga cenderung ingin langsung coding program dan write the test later.
+
+Untuk kedepannya, apabila menggunakan TDD flow, saya harus lebih teliti lagi untuk membuat tests yang mencakup semua paths
+dan juga efisien.
+
+> Have your tests successfully followed F.I.R.S.T. principle or not?
+> If not, explain things that you need to do the next time you create more tests.
+
+Kurang lebih, iya walaupun belum sempurna. Tests-tests yang telah ditulis untuk Order mengikuti prinsip F.I.R.S.T yaitu:
+1. Fast: Test berjalan cepat, kecuali untuk beberapa seperti `testCreateOrder`, `testFindAllByAuthorIfAllLowercase` yang menggunakan lebih banyak waktu dibanding test-test lainnya.
+2. Isolated/Independent: _Shared variable_ antar test hanya digunakan untuk membaca data. Tidak diubah atau dihapus.
+3. Repeatable: Tests sudah konsisten
+4. Self-Validating: Telah menggunakan assertions yang cukup untuk memvalidasi
+5. Through/Timely: Dari analisa jacoco, tests yang ditulis sudah mengcover semua paths.
 
 ## Module 03: Maintainability & OO Principles
 
