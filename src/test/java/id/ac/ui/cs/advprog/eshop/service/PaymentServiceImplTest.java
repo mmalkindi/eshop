@@ -3,7 +3,6 @@ package id.ac.ui.cs.advprog.eshop.service;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Order;
-import id.ac.ui.cs.advprog.eshop.model.PaymentTest;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +38,6 @@ public class PaymentServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        // TODO: create 3 orders and save them with OrderRepository
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -52,7 +49,6 @@ public class PaymentServiceImplTest {
                 products, 1708560000L, "Ruri Sinaga");
         orderRepository.save(order);
 
-        // TODO: also create premade valid payment
         paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
         payment = new Payment("6a48c142-207c-44bb-9278-f0cb2816ed97",
