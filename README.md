@@ -7,11 +7,26 @@ Nama  : Muhammad Milian Alkindi
 Kelas : AdPro-B (Reguler)
 ```
 
-|                    Jump ke module                    |
+|                     Jump ke module                     |
 |:------------------------------------------------------:|
 |        [Module 01](#module-01-coding-standards)        |
 |          [Module 02](#module-02-cicd--devops)          |
 | [Module 03](#module-03-maintainability--oo-principles) |
+|      [Module 04](#module-04-refactoring-and-tdd)       |
+
+## Module 04: Refactoring and TDD
+
+### Reflection-04
+
+> Based on Percival (2017) proposed self-reflective questions, is this TDD flow useful enough for you or not?
+> If not, explain things that you need to do next time you make more tests.
+
+A: ...
+
+> Have your tests successfully followed F.I.R.S.T. principle or not?
+> If not, explain things that you need to do the next time you create more tests.
+
+A: ...
 
 ## Module 03: Maintainability & OO Principles
 
