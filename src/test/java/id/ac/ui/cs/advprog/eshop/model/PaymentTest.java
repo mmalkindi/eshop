@@ -51,7 +51,7 @@ public class PaymentTest {
 
     @Test
     void testCreateInvalidVoucherNotStartsWithESHOP() {
-        voucherPaymentData.put("voucherCode", "ESH0P1234ABC56789");
+        voucherPaymentData.put("voucherCode", "ESH0P1234ABC5678");
 
         Payment payment = new Payment("5fb0fffe-0080-439c-bd5c-2e6824c54c7b",
                 PaymentMethod.VOUCHER.getValue(), voucherPaymentData);
