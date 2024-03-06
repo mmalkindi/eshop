@@ -1,7 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Getter;
-import java.util.Arrays;
 import java.util.Map;
 
 @Getter
@@ -16,32 +17,32 @@ public class Payment {
         this.method = method;
         this.paymentData = paymentData;
 
-        if (method.equals("voucher")) {
+        if (method.equals(PaymentMethod.VOUCHER.getValue())) {
             if (!paymentData.containsKey("voucherCode")) {
                 throw new IllegalArgumentException();
             }
             if (paymentData.get("voucherCode").length() != 16){
-                this.status = "REJECTED";
+                setStatus(PaymentStatus.REJECTED.getValue());
             } else if (!paymentData.get("voucherCode").startsWith("ESHOP")){
-                this.status = "REJECTED";
+                setStatus(PaymentStatus.REJECTED.getValue());
             } else if (countNumericalCharacters(paymentData.get("voucherCode")) != 8){
-                this.status = "REJECTED";
+                setStatus(PaymentStatus.REJECTED.getValue());
             } else {
-                this.status = "SUCCESS";
+                setStatus(PaymentStatus.SUCCESS.getValue());
             }
 
-        } else if (method.equals("bankTransfer")) {
+        } else if (method.equals(PaymentMethod.BANK_TRANSFER.getValue())) {
             if (!paymentData.containsKey("bankName")) {
                 throw new IllegalArgumentException();
             } else if (!paymentData.containsKey("referenceCode")) {
                 throw new IllegalArgumentException();
             }
             if (paymentData.get("bankName") == null){
-                this.status = "REJECTED";
+                setStatus(PaymentStatus.REJECTED.getValue());
             } else if (paymentData.get("referenceCode") == null){
-                this.status = "REJECTED";
+                setStatus(PaymentStatus.REJECTED.getValue());
             } else {
-                this.status = "SUCCESS";
+                setStatus(PaymentStatus.SUCCESS.getValue());
             }
 
         } else {
@@ -60,11 +61,10 @@ public class Payment {
     }
 
     public void setStatus(String status) {
-        String[] statusList ={"SUCCESS", "REJECTED"};
-        if(Arrays.stream(statusList).noneMatch(item -> (item.equals(status)))){
-            throw new IllegalArgumentException();
-        } else{
+        if (PaymentStatus.contains(status)) {
             this.status = status;
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 }
